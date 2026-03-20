@@ -1,0 +1,24 @@
+# Node / Next / build outputs
+node_modules/
+.next/
+dist/
+build/
+out/
+
+# Logs
+*.log
+
+# Env files (keep only *.example)
+.env
+.env.*
+
+# Backend generated uploads (runtime artifacts)
+public/uploads/
+backend/public/uploads/
+
+# PDF/asset uploads created at runtime (if any)
+**/uploads/
+
+# OS / misc
+.DS_Store
+
