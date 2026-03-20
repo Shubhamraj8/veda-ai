@@ -26,7 +26,8 @@ RUN npm install --only=production
 
 # Copy built files from builder stage
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/public ./public
+# Ensure runtime upload directory exists even if /public isn't in source tree.
+RUN mkdir -p /app/public/uploads/pdfs
 
 # Set environment to production
 ENV NODE_ENV=production
