@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { BookOpenText, Grid2x2, LibraryBig, Users } from "lucide-react";
 
 const navItems = [
-  { label: "Home", icon: Grid2x2, href: "/home" },
+  { label: "Home", icon: Grid2x2, href: "/" },
   { label: "My Groups", icon: Users, href: "/groups" },
   { label: "Library", icon: LibraryBig, href: "/library" },
   // Match your screenshot wording: "AI Toolkit"
@@ -24,7 +24,8 @@ export function BottomNav() {
       <div className="flex items-center justify-between">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href;
+          const isHomeItem = item.href === "/";
+          const isActive = isHomeItem ? pathname === "/" || pathname === "/home" : pathname === item.href;
 
           return (
             <Link

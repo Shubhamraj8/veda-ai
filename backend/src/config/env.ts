@@ -34,7 +34,7 @@ export const envSchema = z.object({
 
   CORS_ORIGIN: z
     .string()
-    .min(1)
+    .default('*')
     // Accept comma-separated values: "https://a.com,https://b.com"
     .transform((val) => val.split(',').map((s) => s.trim()).filter(Boolean)),
 

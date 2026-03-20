@@ -9,9 +9,10 @@ let io: SocketIOServer;
  * Initialize Socket.IO and attach to the HTTP server.
  */
 export function initWebSocket(httpServer: HttpServer): SocketIOServer {
+  const allowAllCors = config.CORS_ORIGIN.includes('*');
   io = new SocketIOServer(httpServer, {
     cors: {
-      origin: config.CORS_ORIGIN,
+      origin: allowAllCors ? true : config.CORS_ORIGIN,
       methods: ['GET', 'POST'],
     },
     pingTimeout: 60000,

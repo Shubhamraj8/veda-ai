@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import HomePage from "@/app/(dashboard)/home/page";
 
-export default function HomePage() {
-  redirect("/assignments");
+export default function RootPage() {
+  return <HomePage />;
 }

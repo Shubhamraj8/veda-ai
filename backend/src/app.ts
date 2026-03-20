@@ -20,14 +20,16 @@ import {
 
 export function createApp(): express.Application {
   const app = express();
+  const allowAllCors = config.CORS_ORIGIN.includes('*');
 
   // Basic security and tracing
   app.use(requestIdMiddleware);
   app.use(helmet());
   app.use(
     cors({
-      origin: config.CORS_ORIGIN,
-      credentials: true,
+      origin: allowAllCors ? true : config.CORS_ORIGIN,
+      // CORS spec disallows credentials + wildcard. Disable credentials in wildcard mode.
+      credentials: !allowAllCors,
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     }),
   );

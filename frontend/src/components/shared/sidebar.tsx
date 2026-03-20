@@ -16,7 +16,7 @@ import { useAssignmentFlowStore } from "@/features/assignment/store/assignment-f
 import { useSchoolBrandingStore } from "@/features/school/store/school-branding.store";
 
 const navItems = [
-  { label: "Home", icon: Grid2x2, href: "/home" },
+  { label: "Home", icon: Grid2x2, href: "/" },
   { label: "My Groups", icon: Users, href: "/groups" },
   { label: "Assignments", icon: FileText, href: "/assignments" },
   { label: "AI Teacher's Toolkit", icon: BookOpenText, href: "/toolkit" },
@@ -57,12 +57,14 @@ export function Sidebar() {
       <nav aria-label="Sidebar" className="space-y-2">
         {navItems.map((item) => {
           const Icon = item.icon;
+          const isHomeItem = item.href === "/";
+          const isActive = isHomeItem ? pathname === "/" || pathname === "/home" : pathname === item.href;
           return (
             <Link
               key={item.label}
               href={item.href}
               className={`flex h-10 items-center rounded-xl px-3 [font-family:var(--font-bricolage)] text-base leading-[140%] tracking-[-0.04em] ${
-                pathname === item.href
+                isActive
                   ? "bg-[#e7e7e7] font-normal text-[rgba(48,48,48,1)]"
                   : "font-normal text-[rgba(94,94,94,1)] hover:bg-[#ececec]"
               }`}

@@ -39,7 +39,7 @@ export function Topbar() {
         // UI-only logout for now.
         setStep("idle");
         clearSchoolLogo();
-        router.push("/home");
+        router.push("/");
       },
     },
   ];
