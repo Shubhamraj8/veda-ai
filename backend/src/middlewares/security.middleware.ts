@@ -9,7 +9,8 @@ import { logger } from '../utils/logger';
  */
 export const globalRateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per window
+  // Polling during assignment generation + SPA navigation can exceed a low cap; keep abuse protection but avoid false positives.
+  max: Number(process.env.RATE_LIMIT_GLOBAL_MAX ?? 600),
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -23,7 +24,7 @@ export const globalRateLimiter = rateLimit({
  */
 export const generationRateLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 10, // Limit each IP to 10 generations per hour
+  max: Number(process.env.RATE_LIMIT_GENERATION_MAX ?? 30),
   standardHeaders: true,
   legacyHeaders: false,
   message: {

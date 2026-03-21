@@ -22,6 +22,9 @@ export function createApp(): express.Application {
   const app = express();
   const allowAllCors = config.CORS_ORIGIN.includes('*');
 
+  // Behind Render/Vercel/nginx, trust X-Forwarded-* so req.ip and rate limits are per real client.
+  app.set('trust proxy', 1);
+
   // Basic security and tracing
   app.use(requestIdMiddleware);
   app.use(helmet());
