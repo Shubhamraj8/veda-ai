@@ -35,5 +35,5 @@ ENV NODE_ENV=production
 # Expose the API port
 EXPOSE 5000
 
-# Start the server (you may need a separate container for the worker)
-CMD ["npm", "start"]
+# API + BullMQ workers (AI + PDF). Required for assignment generation in a single container.
+CMD ["npm", "run", "start:all"]

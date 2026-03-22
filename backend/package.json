@@ -8,6 +8,7 @@
     "build": "tsc && tsc-alias",
     "worker": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --exit-child src/worker.ts",
     "start": "node dist/server.js",
+    "start:all": "concurrently -k \"node dist/server.js\" \"node dist/worker.js\"",
     "start:api:prod": "node dist/server.js",
     "start:worker:prod": "node dist/worker.js",
     "typecheck": "tsc --noEmit",
@@ -22,6 +23,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "bullmq": "^5.71.0",
+    "concurrently": "^9.2.1",
     "cors": "^2.8.6",
     "dompurify": "^3.3.3",
     "dotenv": "^17.3.1",

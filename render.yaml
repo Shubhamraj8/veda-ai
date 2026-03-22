@@ -1,0 +1,15 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# Deploy from repo root; set env vars in Render dashboard (MONGODB_URI, REDIS_URL, GEMINI_API_KEY, etc.)
+
+services:
+  - type: web
+    name: vedaai-backend
+    runtime: docker
+    region: oregon
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production

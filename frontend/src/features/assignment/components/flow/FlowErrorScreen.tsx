@@ -35,7 +35,9 @@ export function FlowErrorScreen() {
                 {errorMessage ?? "Please try again."}
               </div>
               <p className="mt-2 text-[14px] leading-[140%] tracking-[-0.04em] text-[rgba(94,94,94,1)]">
-                Backend generation failed for this assignment. You can retry to regenerate.
+                {errorMessage?.includes("longer than expected")
+                  ? "The server may still be working—check Render logs or try again. You can retry without losing your form details."
+                  : "Backend generation failed for this assignment. You can retry to regenerate."}
               </p>
             </div>
           </div>

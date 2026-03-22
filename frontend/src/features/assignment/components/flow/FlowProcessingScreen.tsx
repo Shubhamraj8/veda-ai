@@ -92,7 +92,8 @@ export function FlowProcessingScreen() {
     doneRef.current = false;
     let failCount = 0;
 
-    const maxMs = 180_000; // 3 minutes
+    // AI + queue + PDF on Render often exceeds a few minutes; don't fail the UI too early.
+    const maxMs = 600_000; // 10 minutes
     const pollMs = 2500;
 
     const timeoutId = window.setTimeout(() => {
