@@ -69,6 +69,19 @@ export function createApp(): express.Application {
   // All other routes prefixed with /api/v1
   app.use('/api/v1', routes);
 
+  // Root URL (opening the Render link in a browser hits GET /)
+  app.get('/', (_req, res) => {
+    res.status(200).json({
+      success: true,
+      message: 'VedaAI Backend API',
+      endpoints: {
+        health: '/health',
+        healthPrefixed: '/api/v1/health',
+        api: '/api/v1',
+      },
+    });
+  });
+
   // ── 404 catch-all ─────────────────────────────
   app.use((_req, res) => {
     res.status(404).json({
